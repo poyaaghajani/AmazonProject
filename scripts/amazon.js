@@ -1,4 +1,5 @@
 "use strict";
+import { cart } from "../data/cart.js";
 
 let productsHtml = "";
 
