@@ -1,6 +1,6 @@
 "use strict";
 
-import { cart, removeFromCard } from "../data/cart.js";
+import { cart, removeFromCard, getCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
@@ -36,7 +36,7 @@ cart.forEach((cartItem) => {
         <div class="product-price">$${formatCurrency(
           matchingProduct.priceCents
         )}</div>
-        <div class="product-quantity">
+        <div class="product-quantity js-product-quantity">
             <span> Quantity: <span class="quantity-label">${
               cartItem.quantity
             }</span> </span>
@@ -102,6 +102,8 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
 
     removeFromCard(productId);
 
+    updateCartQuantity();
+
     const container = document.querySelector(
       `.js-card-item-container-${productId}`
     );
@@ -109,3 +111,17 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
     container.remove();
   });
 });
+
+function updateCartQuantity() {
+  let totalQuantity = getCartQuantity();
+
+  if (totalQuantity == 0) {
+    document.querySelector(".js-return-to-home-link").innerHTML = "";
+  } else {
+    document.querySelector(
+      ".js-return-to-home-link"
+    ).innerHTML = `${totalQuantity} items`;
+  }
+}
+
+updateCartQuantity();

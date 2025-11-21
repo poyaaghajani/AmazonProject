@@ -51,3 +51,7 @@ export function removeFromCard(productId) {
 
   saveToStorage();
 }
+
+export function getCartQuantity() {
+  return cart.reduce((sum, item) => sum + item.quantity, 0);
+}
