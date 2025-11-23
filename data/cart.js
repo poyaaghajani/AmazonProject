@@ -58,3 +58,17 @@ export function removeFromCard(productId) {
 export function getCartQuantity() {
   return cart.reduce((sum, item) => sum + item.quantity, 0);
 }
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchingItem;
+
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+
+  matchingItem.deliveryOptionId = deliveryOptionId;
+
+  saveToStorage();
+}
