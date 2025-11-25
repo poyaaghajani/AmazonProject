@@ -14,15 +14,6 @@ import {
   getDeliveryOption,
 } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
-import isWeekend from "../utils/is_weekend.js";
-
-let today = dayjs();
-
-let formattedDate = today.add(5, "days").format("dddd");
-
-console.log(formattedDate);
-
-console.log(isWeekend(formattedDate));
 
 export function renderOrderSummary() {
   let cartSummeryHtml = "";
