@@ -6,7 +6,7 @@ import {
   getCartQuantity,
   updateDeliveryOption,
 } from "../../data/cart.js";
-import { products, getProduct } from "../../data/products.js";
+import { getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import {
@@ -32,9 +32,9 @@ export function renderOrderSummary() {
     const dateString = deliveryDate.format("dddd, MMMM D");
 
     cartSummeryHtml += `
-    <div class="cart-item-container js-card-item-container-${
-      matchingProduct.id
-    }">
+    <div class="cart-item-container
+    js-cart-item-container
+    js-card-item-container-${matchingProduct.id}">
     <div class="delivery-date">Delivery date: ${dateString}</div>
 
     <div class="cart-item-details-grid">
@@ -54,7 +54,8 @@ export function renderOrderSummary() {
             <span> Quantity: <span class="quantity-label">${
               cartItem.quantity
             }</span> </span>
-            <span class="update-quantity-link link-primary js-update-quantity-link" 
+            <span class="update-quantity-link link-primary js-update-quantity-link
+            js-delete-link-${matchingProduct.id}"
             data-product-id="${matchingProduct.id}">
             Update
             </span>
